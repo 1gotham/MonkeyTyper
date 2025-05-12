@@ -4,14 +4,14 @@
 
 #ifndef WORD_H
 #define WORD_H
-
+#pragma once
 #include <SFML/Graphics.hpp>
 
 class Word {
     public:
-        Word(const std::string &word, const sf::Font &font, unsigned int windowHeight);
+        Word(const std::string &word, const sf::Font &font);
 
-        void update(float deltaTime, float speed);
+        void moveWord(float deltaTime, float speed);
 
         void draw(sf::RenderWindow &window) const;
 

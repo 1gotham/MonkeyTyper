@@ -1,0 +1,10 @@
+test1 37500
+test22 17700
+test5 13200
+test32 2300
+test123 1800
+test90 1000
+test8 500
+test50 0
+test250 0
+test1920 0

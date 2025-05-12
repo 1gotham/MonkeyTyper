@@ -6,30 +6,31 @@
 #include <random>
 #include <SFML/Graphics.hpp>
 
-Word::Word(const std::string &word, const sf::Font &font, unsigned int windowHeight) : text(font, word, 15), x(0){
+Word::Word(const std::string &word, const sf::Font &font) : text(font, word, 150u), x(0){
 
   for (char character : text.getString()) {
-    sf::Text letter(font, character, 15);
+    sf::Text letter(font, std::string(1, character), 35u);
     letter.setPosition(sf::Vector2f(x, 0));
+    letter.setOutlineColor(sf::Color::Black);
+    letter.setOutlineThickness(3);
     characters.push_back(letter);
-    x += 15;
+    x += letter.getCharacterSize();
   }
+  int min = 0;
+  int max = 12;
 
-  std::random_device rd;
-  std::mt19937 gen(rd());
-  std::uniform_int_distribution<int> distrib(50, windowHeight - 50);
-  auto randY = distrib(gen);
+  std::vector<float> positions = {100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700};
+  int yPosIndex = std::rand() % (max - min + 1) + min;
 
 
-  float yPos = static_cast<float>(distrib(gen));
   for (auto& character : characters) {
-    character.setPosition(sf::Vector2f(0.f + character.getPosition().x, yPos));
+    character.setPosition(sf::Vector2f(0.f + character.getPosition().x, positions[yPosIndex]));
   }
 }
 
-void Word::update(float deltaTime, float speed){
+void Word::moveWord(float deltaTime, float speed){
   for (auto& character : characters) {
-    character.move(sf::Vector2f(speed * deltaTime / text.getString().getSize(), 0));
+    character.move(sf::Vector2f(speed * deltaTime, 0));
   }
 }
 
@@ -43,7 +44,7 @@ void Word::highlightLetters(const std::string& typed) {
   for (int i = 0; i < characters.size(); ++i) {
     if (i < typed.size()) {
       if (typed[i] == characters[i].getString()[0]) {
-        characters[i].setFillColor(sf::Color::Green);
+        characters[i].setFillColor(sf::Color(130, 217, 115));
       } else {
         characters[i].setFillColor(sf::Color::White);
       }
@@ -62,7 +63,7 @@ std::string Word::getString() const {
 }
 
 sf::Vector2f Word::getPosition() const {
-  return text.getPosition();
+  return characters[0].getPosition();
 }
 
 sf::Text Word::getText() const {
