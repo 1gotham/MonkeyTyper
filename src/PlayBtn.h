@@ -13,7 +13,7 @@
 class PlayBtn {
     public:
         PlayBtn(const sf::RenderWindow& windowArg, GameStatus& gameStatus);
-        void changeGameStatusOnClick(GameStatus& gameStatus);
+        void changeGameStatusOnClick(GameStatus& gameStatus, sf::RenderWindow& window);
         void drawPlayBtn(sf::RenderWindow& window);
         void hoverOverBtn(sf::RenderWindow& window);
     private:

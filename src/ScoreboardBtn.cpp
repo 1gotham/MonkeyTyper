@@ -8,9 +8,11 @@ ScoreboardBtn::ScoreboardBtn(const sf::RenderWindow& windowArg, GameStatus& game
 
 }
 
-void ScoreboardBtn::changeGameStatusOnClick(GameStatus& gameStatus, ScoreManager& scoreManager){
+void ScoreboardBtn::changeGameStatusOnClick(GameStatus& gameStatus, ScoreManager& scoreManager, sf::RenderWindow& window){
     sf::FloatRect btnBounds = btnRect.getGlobalBounds();
-    if(btnBounds.contains(static_cast<sf::Vector2f>(sf::Mouse::getPosition())))
+    sf::Vector2i pixelPos = sf::Mouse::getPosition(window);
+    sf::Vector2f worldPos = window.mapPixelToCoords(pixelPos);
+    if(btnBounds.contains(worldPos))
     {
         scoreManager.prepareScoreboard();
         gameStatus = GameStatus::ShowScores;
@@ -19,7 +21,9 @@ void ScoreboardBtn::changeGameStatusOnClick(GameStatus& gameStatus, ScoreManager
 
 void ScoreboardBtn::hoverOverBtn(sf::RenderWindow& window){
     sf::FloatRect btnBounds = btnRect.getGlobalBounds();
-    if(btnBounds.contains(static_cast<sf::Vector2f>(sf::Mouse::getPosition())))
+    sf::Vector2i pixelPos = sf::Mouse::getPosition(window);
+    sf::Vector2f worldPos = window.mapPixelToCoords(pixelPos);
+    if(btnBounds.contains(worldPos))
     {
         btnRect.setOutlineColor(sf::Color(238,206,85));
 

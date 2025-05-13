@@ -12,7 +12,9 @@ OptionsManager::OptionsManager(sf::RenderWindow &window, FontManager& fontManage
 
 void OptionsManager::hoverOverOption(sf::RenderWindow &window) {
     for (int i = 0; i < optionsToChoose.size(); ++i) {
-        if(optionsToChoose[i].getGlobalBounds().contains(static_cast<sf::Vector2f>(sf::Mouse::getPosition())))
+        sf::Vector2i pixelPos = sf::Mouse::getPosition(window);
+        sf::Vector2f worldPos = window.mapPixelToCoords(pixelPos);
+        if(optionsToChoose[i].getGlobalBounds().contains(worldPos))
         {
             optionsToChoose[i].setOutlineThickness(5);
             optionsToChoose[i].setOutlineColor(sf::Color(238,206,85));
@@ -24,9 +26,11 @@ void OptionsManager::hoverOverOption(sf::RenderWindow &window) {
     }
 
 }
-void OptionsManager::changeOptionOnClick() {
+void OptionsManager::changeOptionOnClick(sf::RenderWindow &window) {
     for (int i = 0; i < optionsToChoose.size(); ++i) {
-        if(optionsToChoose[i].getGlobalBounds().contains(static_cast<sf::Vector2f>(sf::Mouse::getPosition()))){
+        sf::Vector2i pixelPos = sf::Mouse::getPosition(window);
+        sf::Vector2f worldPos = window.mapPixelToCoords(pixelPos);
+        if(optionsToChoose[i].getGlobalBounds().contains(worldPos)){
             if (hoveredIndex == 0) {
                 difficultyManager.nextDifficulty();
             } else if (hoveredIndex == 1) {

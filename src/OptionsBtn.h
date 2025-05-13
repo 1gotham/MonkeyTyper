@@ -13,7 +13,7 @@
 class OptionsBtn {
     public:
         OptionsBtn(const sf::RenderWindow& windowArg, GameStatus& gameStatus);
-        void changeGameStatusOnClick(GameStatus& gameStatus);
+        void changeGameStatusOnClick(GameStatus& gameStatus, sf::RenderWindow& window);
         void drawOptionsBtn(sf::RenderWindow& window);
         void hoverOverBtn(sf::RenderWindow& window);
     private:

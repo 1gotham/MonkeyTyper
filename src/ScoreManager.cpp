@@ -30,7 +30,7 @@ void ScoreManager::saveScore(const std::string &playerName) {
 
 void ScoreManager::drawScoreboard(sf::RenderWindow &win) {
     const auto &board = scoreboard.getBoard();
-    float x = (win.getSize().x)/2;
+    float x = 960;
     float y = 100.f;
     sf::Text title(font, "=== TOP 10 ===", 50);
     sf::FloatRect titleBounds = title.getLocalBounds();

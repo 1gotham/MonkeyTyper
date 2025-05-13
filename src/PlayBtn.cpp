@@ -8,9 +8,11 @@
 PlayBtn::PlayBtn(const sf::RenderWindow& window, GameStatus& gameStatus) : btnTexture("playBtnTexture.png"){
 }
 
-void PlayBtn::changeGameStatusOnClick(GameStatus& gameStatus) {
+void PlayBtn::changeGameStatusOnClick(GameStatus& gameStatus, sf::RenderWindow& window) {
         sf::FloatRect btnBounds = btnRect.getGlobalBounds();
-        if(btnBounds.contains(static_cast<sf::Vector2f>(sf::Mouse::getPosition())))
+        sf::Vector2i pixelPos = sf::Mouse::getPosition(window);
+        sf::Vector2f worldPos = window.mapPixelToCoords(pixelPos);
+        if(btnBounds.contains(worldPos))
         {
                 gameStatus = GameStatus::Playing;
         }
@@ -27,7 +29,9 @@ void PlayBtn::drawPlayBtn(sf::RenderWindow& window) {
 
 void PlayBtn::hoverOverBtn(sf::RenderWindow& window) {
         sf::FloatRect btnBounds = btnRect.getGlobalBounds();
-        if(btnBounds.contains(static_cast<sf::Vector2f>(sf::Mouse::getPosition())))
+        sf::Vector2i pixelPos = sf::Mouse::getPosition(window);
+        sf::Vector2f worldPos = window.mapPixelToCoords(pixelPos);
+        if(btnBounds.contains(worldPos))
         {
                 btnRect.setOutlineThickness(10);
                 btnRect.setOutlineColor(sf::Color(238,206,85));

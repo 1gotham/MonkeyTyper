@@ -124,7 +124,7 @@ int main()
     inputText.setPosition(sf::Vector2f(1320, 870));
     inputText.setCharacterSize(70);
 
-    std::string playersName = "";
+    std::string playersName;
     sf::Text playersNameText(fontManager.getCurrentFont());
     playersNameText.setCharacterSize(70);
 
@@ -230,9 +230,9 @@ int main()
                         if (mouseButtonPressed->button == sf::Mouse::Button::Left)
                         {
                             setBaseValues();
-                            scoreboardBtn.changeGameStatusOnClick(gameStatus, scoreManager);
-                            playBtn.changeGameStatusOnClick(gameStatus);
-                            optionsBtn.changeGameStatusOnClick(gameStatus);
+                            scoreboardBtn.changeGameStatusOnClick(gameStatus, scoreManager, window);
+                            playBtn.changeGameStatusOnClick(gameStatus, window);
+                            optionsBtn.changeGameStatusOnClick(gameStatus, window);
 
                             spawnClock.restart();
                             clock.restart();
@@ -270,7 +270,7 @@ int main()
                         {
                             if (mouseButtonPressed->button == sf::Mouse::Button::Left)
                             {
-                                menuBackBtn.changeGameStatusOnClick(gameStatus);
+                                menuBackBtn.changeGameStatusOnClick(gameStatus, window);
                             }
                         }
                     }
@@ -323,7 +323,7 @@ int main()
                     {
                         if (mouseButtonPressed->button == sf::Mouse::Button::Left)
                         {
-                            menuBackBtn.changeGameStatusOnClick(gameStatus);
+                            menuBackBtn.changeGameStatusOnClick(gameStatus, window);
                         }
                     }
                 }
@@ -343,8 +343,8 @@ int main()
                     {
                         if (mouseButtonPressed->button == sf::Mouse::Button::Left)
                         {
-                            menuBackBtn.changeGameStatusOnClick(gameStatus);
-                            optionsManager.changeOptionOnClick();
+                            menuBackBtn.changeGameStatusOnClick(gameStatus, window);
+                            optionsManager.changeOptionOnClick(window);
                         }
                     }
                 }
@@ -374,7 +374,7 @@ int main()
                     {
                         if (mouseButtonPressed->button == sf::Mouse::Button::Left)
                         {
-                            menuBackBtn.changeGameStatusOnClick(gameStatus);
+                            menuBackBtn.changeGameStatusOnClick(gameStatus, window);
                             spawnClock.restart();
                             clock.restart();
                         }

@@ -9,9 +9,11 @@ MenuBackBtn::MenuBackBtn(const sf::RenderWindow& windowArg, GameStatus& gameStat
 
 }
 
-void MenuBackBtn::changeGameStatusOnClick(GameStatus& gameStatus){
+void MenuBackBtn::changeGameStatusOnClick(GameStatus& gameStatus, sf::RenderWindow& window) {
     sf::FloatRect btnBounds = btnRect.getGlobalBounds();
-    if(btnBounds.contains(static_cast<sf::Vector2f>(sf::Mouse::getPosition())))
+    sf::Vector2i pixelPos = sf::Mouse::getPosition(window);
+    sf::Vector2f worldPos = window.mapPixelToCoords(pixelPos);
+    if(btnBounds.contains(worldPos))
     {
         gameStatus = GameStatus::Menu;
     }
@@ -19,7 +21,9 @@ void MenuBackBtn::changeGameStatusOnClick(GameStatus& gameStatus){
 
 void MenuBackBtn::hoverOverBtn(sf::RenderWindow& window){
     sf::FloatRect btnBounds = btnRect.getGlobalBounds();
-    if(btnBounds.contains(static_cast<sf::Vector2f>(sf::Mouse::getPosition())))
+    sf::Vector2i pixelPos = sf::Mouse::getPosition(window);
+    sf::Vector2f worldPos = window.mapPixelToCoords(pixelPos);
+    if(btnBounds.contains(worldPos))
     {
         btnRect.setTexture(&menuBackBtnTextureHover);
 

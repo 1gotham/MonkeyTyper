@@ -13,7 +13,7 @@
 class ScoreboardBtn {
     public:
         ScoreboardBtn(const sf::RenderWindow& windowArg, GameStatus& gameStatus);
-        void changeGameStatusOnClick(GameStatus& gameStatus, ScoreManager& scoreManager);
+        void changeGameStatusOnClick(GameStatus& gameStatus, ScoreManager& scoreManager, sf::RenderWindow& window);
         void drawScoreboardBtn(sf::RenderWindow& window);
         void hoverOverBtn(sf::RenderWindow& window);
     private:

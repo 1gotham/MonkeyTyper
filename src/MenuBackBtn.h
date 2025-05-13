@@ -14,7 +14,7 @@
 class MenuBackBtn {
     public:
         MenuBackBtn(const sf::RenderWindow& windowArg, GameStatus& gameStatus);
-        void changeGameStatusOnClick(GameStatus& gameStatus);
+        void changeGameStatusOnClick(GameStatus& gameStatus, sf::RenderWindow& window);
         void drawMenuBackBtn(sf::RenderWindow& window);
         void hoverOverBtn(sf::RenderWindow& window);
     private:

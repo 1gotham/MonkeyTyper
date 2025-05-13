@@ -15,7 +15,7 @@ class OptionsManager {
         OptionsManager(sf::RenderWindow& window, FontManager& fontManager, DifficultyManager& difficultyManager, bool& musicOn, bool& wasMusicPlayed);
         void hoverOverOption(sf::RenderWindow& window);
         void drawOptions(sf::RenderWindow& window);
-        void changeOptionOnClick();
+        void changeOptionOnClick(sf::RenderWindow& window);
 
 
     private:
